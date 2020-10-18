@@ -13,6 +13,7 @@ export class PokemonsComponent implements OnInit {
   @Input() pokemonList: Pokemon['results'];
   onePokemon: PokemonDetails[];
   pokemonImg: string;
+  pokemonId: number;
 
   constructor(
     private pokemonService: PokeApiService,
@@ -27,7 +28,9 @@ export class PokemonsComponent implements OnInit {
       .getPokemonUrl(url)
       .subscribe((result: any) => {
         this.onePokemon = result;
+        this.pokemonId = result.order;
         this.pokemonImg = result.sprites.front_default;
+        console.log(result);
         return result;
       })
   }
