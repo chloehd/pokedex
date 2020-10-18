@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { Pokemon } from '../pokemon';
+import { Pokemon, PokemonDetails } from '../pokemon';
+import { PokeApiService } from '../pokeApi.service';
 
 @Component({
   selector: 'app-pokemons',
@@ -10,11 +11,25 @@ import { Pokemon } from '../pokemon';
 export class PokemonsComponent implements OnInit {
 
   @Input() pokemonList: Pokemon['results'];
+  onePokemon: PokemonDetails[];
+  pokemonImg: string;
 
   constructor(
-  ) {}
+    private pokemonService: PokeApiService,
+  ) { }
 
   ngOnInit(): void {
+    this.getPokemonUrl(this.pokemonList['url']);
+  }
+
+  getPokemonUrl(url) {
+    this.pokemonService
+      .getPokemonUrl(url)
+      .subscribe((result: any) => {
+        this.onePokemon = result;
+        this.pokemonImg = result.sprites.front_default;
+        return result;
+      })
   }
 
 }

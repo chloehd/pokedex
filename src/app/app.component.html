@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-
-
 <h1>Pokedex</h1>
 <div class="pokemons-display">
   <app-pokemons *ngFor="let pokemon of pokemonList" [pokemonList]="pokemon"></app-pokemons>
 </div>
-
 <button (click)="getNextPokemons(next)">Next</button>
 <router-outlet></router-outlet>

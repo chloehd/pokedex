@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-
-<div class="pokemonCard" *ngIf="pokemonList">
-  <p>{{pokemonList['name']}}</p>
-  <p>{{pokemonList['url']}}</p>
+<div class="pokemonCard" >
+  <div *ngIf="pokemonImg">
+    <img src="{{pokemonImg}}"/>    
+  </div>
+  <div *ngIf="pokemonList">
+    <p>{{pokemonList['name']}}</p>
+  </div>
 </div>
+

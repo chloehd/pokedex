@@ -14,7 +14,6 @@ export class AppComponent {
   offset: number = 0;
   limit: number = 50;
   next: string;
-  id: string[];
 
   constructor(
     private pokemonService: PokeApiService,
@@ -23,25 +22,21 @@ export class AppComponent {
   }
 
   init(): void {
+    this.getPokemonList();
+  }
+
+  getPokemonList() {
     this.pokemonService
       .getPokemonList(this.offset, this.limit)
       .subscribe((result: any) => {
-        this.id = Object.keys(result.results);
-        console.log(this.id);
         return this.pokemonList = result.results;
       });
   }
 
-  getNextPokemons(next) {
+  getNextPokemons(next: any) {
     if (next !== null) {
       this.offset += this.limit;
-      this.pokemonService
-        .getPokemonList(this.offset, this.limit)
-        .subscribe((result: any) => {
-          console.log('next pokemons', result);
-          this.pokemonList = result.results;
-          return result;
-        });
+      this.getPokemonList();
     }
   }
 } 
