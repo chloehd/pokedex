@@ -1,1 +1,38 @@
-<p>pokemon-detail works!</p>
+<div *ngIf="pokemon">
+  <img>
+  <h2>{{pokemon.name}}</h2>
+  <p>{{pokemon.order}}</p>
+  <ng-container *ngFor="let item of pokemon.types">
+      <p>{{item.type.name}}</p>
+  </ng-container>
+</div>
+<div>
+  <h3>Abilities</h3>
+  <ul>
+    <ng-container *ngFor="let item of pokemon.abilities">
+      <li>{{item.ability.name}}</li>
+    </ng-container>
+  </ul>
+</div>
+<div>
+  <h3>Stats</h3>
+  <ng-container *ngFor="let item of pokemon.stats">
+  <ul>
+      <li>{{item.stat.name}}</li>
+      <li>{{item.base_stat}}</li>
+      <li>{{item.effort}}</li>
+    </ul>
+  </ng-container>
+</div>
+<div>
+  <h3>Possible evolutions</h3>
+</div>
+<div>
+  <h3>Moves</h3>
+  <ul>
+    <ng-container *ngFor="let item of pokemon.moves">
+      <li>{{item.move.name}}</li>
+    </ng-container>
+  </ul>
+    
+</div>

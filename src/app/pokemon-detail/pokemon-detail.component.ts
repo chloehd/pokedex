@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input() pokemon: any;
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }
-
 }
