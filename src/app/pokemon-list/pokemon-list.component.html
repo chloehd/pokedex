@@ -1,0 +1,13 @@
+<div class="pokemonCard card text-white bg-dark mb-3"
+     style="max-width: 18rem;"
+     *ngIf="pokemonName" [routerLink]="['/pokemon', pokemonName]"
+     routerLinkActive="active"
+>
+  <div class="card-header" *ngIf="pokemonImg">
+    <img src="{{pokemonImg}}" alt="{{pokemonName}}"/>
+  </div>
+  <div class="card-body" *ngIf="pokemonName && pokemonLink">
+    <h5 class="card-title">{{pokemonName}}</h5>
+    <p class="card-text">{{pokemonLink}}</p>
+  </div>
+</div>
