@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PokeApiService } from './pokeApi.service';
-import { Pokemon, PokemonDetails } from './pokemon';
+import { Results } from './pokemon';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,9 @@ import { Pokemon, PokemonDetails } from './pokemon';
 })
 export class AppComponent {
   title = 'pokedex';
-  pokemonList: Pokemon['results'];
-  pokemonDetails: PokemonDetails;
-  offset: number = 0;
-  limit: number = 50;
+  pokemonList: Results[];
+  offset = 0;
+  limit = 50;
   next: string;
 
   constructor(
@@ -33,10 +32,12 @@ export class AppComponent {
       });
   }
 
-  getNextPokemons(next: any) {
+  getNextPokemon(next: any) {
     if (next !== null) {
       this.offset += this.limit;
       this.getPokemonList();
+    } else {
+      this.offset = this.offset - this.limit;
     }
   }
-} 
+}

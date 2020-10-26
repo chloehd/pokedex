@@ -1,7 +1,6 @@
-<!DOCTYPE html>
 <h1>Pokedex</h1>
 <div class="pokemons-display">
-  <app-pokemons *ngFor="let pokemon of pokemonList" [pokemonList]="pokemon"></app-pokemons>
+  <app-pokemon-list *ngFor="let pokemon of pokemonList" [pokemonName]="pokemon.name" [pokemonLink]="pokemon.url"></app-pokemon-list>
 </div>
-<button (click)="getNextPokemons(next)">Next</button>
+<button (click)="getNextPokemon(next)">Next</button>
 <router-outlet></router-outlet>
