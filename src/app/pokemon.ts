@@ -1,16 +1,17 @@
 export interface Pokemon {
   count: number;
   next: string;
-  results: [
-    {
-      name: string,
-      url: string
-    }
-  ];
+  results: Results[];
+}
+
+export interface Results {
+  name: string;
+  url: string;
 }
 
 export interface PokemonDetails {
-  abilities: string[];
+  name: string;
+  abilities: Array<any>;
   sprites: string[];
   types: string[];
   order: number;
@@ -18,6 +19,7 @@ export interface PokemonDetails {
   species: string[];
   moves: string[];
 }
+
 
 
 // The Details-Page should display:
