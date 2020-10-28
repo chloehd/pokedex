@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { PokemonDetails } from '../pokemon';
+import { PokemonDetails, Results } from '../pokemon';
 import { PokeApiService } from '../pokeApi.service';
 
 @Component({
@@ -9,36 +9,48 @@ import { PokeApiService } from '../pokeApi.service';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
-
-  @Input() pokemonName: string;
-  @Input() pokemonLink: string;
+  pokemonList: Results[];
+  offset = 0;
+  limit = 50;
+  next: string;
   onePokemon: PokemonDetails[];
   pokemonImg: string;
+  pokemonLink: string;
 
   constructor(
     private pokemonService: PokeApiService,
   ) { }
 
   ngOnInit(): void {
-    this.getPokemonDetails(this.pokemonLink);
-    this.getPokemonUrlByName(this.pokemonName);
+    this.getPokemonList();
+  }
+
+  getPokemonList() {
+    this.pokemonService
+      .getPokemonList(this.offset, this.limit)
+      .subscribe((result: any) => {
+        this.pokemonList = result.results;
+        return this.pokemonList;
+      });
   }
 
   getPokemonDetails(url) {
     this.pokemonService
       .getPokemonUrl(url)
       .subscribe((result: any) => {
+        console.log(result);
         this.onePokemon = result;
         this.pokemonImg = result.sprites.front_default;
         return result;
       });
   }
 
-  getPokemonUrlByName(name) {
-    this.pokemonService
-      .getPokemonUrlByName(name)
-      .subscribe((result: any) => {
-        return result;
-      });
+  getNextPokemon(next: any) {
+    if (next !== null) {
+      this.offset += this.limit;
+      this.getPokemonList();
+    } else {
+      this.offset = this.offset - this.limit;
+    }
   }
 }

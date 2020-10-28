@@ -1,13 +1,17 @@
-<div class="pokemonCard card text-white bg-dark mb-3"
-     style="max-width: 18rem;"
-     *ngIf="pokemonName" [routerLink]="['/pokemon', pokemonName]"
-     routerLinkActive="active"
->
-  <div class="card-header" *ngIf="pokemonImg">
-    <img src="{{pokemonImg}}" alt="{{pokemonName}}"/>
-  </div>
-  <div class="card-body" *ngIf="pokemonName && pokemonLink">
-    <h5 class="card-title">{{pokemonName}}</h5>
-    <p class="card-text">{{pokemonLink}}</p>
+<h1>Pokedex</h1>
+<div class="pokemons-display" *ngFor="let onePokemon of pokemonList">
+  <div class="pokemonCard card text-white bg-dark mb-3"
+       style="max-width: 18rem;"
+       [routerLink]="['/pokemon', onePokemon.name]"
+       routerLinkActive="active"
+  >
+    <div class="card-header" *ngIf="pokemonImg">
+      <img src="{{pokemonImg}}" alt="{{onePokemon.name}}"/>
+    </div>
+    <div class="card-body" *ngIf="onePokemon.name && onePokemon.url">
+      <h5 class="card-title">{{onePokemon.name}}</h5>
+      <p class="card-text">{{onePokemon.url}}</p>
+    </div>
   </div>
 </div>
+<button (click)="getNextPokemon(next)">Next</button>
