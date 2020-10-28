@@ -1,0 +1,16 @@
+div {
+  color: #222222;
+  text-transform: capitalize;
+}
+
+.move-names {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  p {
+    margin-right: 20px;
+  }
+}
+

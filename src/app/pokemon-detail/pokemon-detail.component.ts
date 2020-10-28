@@ -16,6 +16,9 @@ export class PokemonDetailComponent implements OnInit {
   pokemonImg: string;
   pokemonName: string;
   pokemonAbilities: PokemonDetails['abilities'];
+  pokemonStats: any;
+  pokemonMoves: any;
+  pokemonTypes: any;
   public pokemonDetailsLink: any;
 
 
@@ -33,11 +36,13 @@ export class PokemonDetailComponent implements OnInit {
       this.pokemonService
         .getPokemonUrlByName(params.name)
         .subscribe((data: any) => {
-          console.log(data);
           this.pokemonName = data.name;
           this.pokemonOrder = data.order;
           this.pokemonImg = data.sprites.front_default;
           this.pokemonAbilities = data.abilities;
+          this.pokemonStats = data.stats;
+          this.pokemonMoves = data.moves;
+          this.pokemonTypes = data.types;
           this.onePokemon = data;
         });
     });
